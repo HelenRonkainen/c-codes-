@@ -1,0 +1,17 @@
+void provide_service(void)
+{
+  if( initialize_service() == ERROR)
+    exit(FAILURE_TO_INITIALIZE);
+  else
+    in_service = TRUE;
+  while(in_service)
+  {
+    if(checkForEvent(EVENT_MASK) == TRUE)
+    {
+      read_input(input_buffer);
+      output_buffer=do_service(input_buffer);
+      write_output(output_buffer);
+    }
+  }
+  shutdown_service();
+}
